@@ -1,17 +1,17 @@
 package main.controller;
 
+import main.services.Calculate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import main.services.ICalculate;
 
 @Controller
 public class ProgramController {
     @Autowired
-    private ICalculate addAttribute;
+    private Calculate calculate;
 
     @GetMapping("/home")
     public String showList() {
@@ -20,10 +20,9 @@ public class ProgramController {
 
     @PostMapping("/home")
     public String greeting(@RequestParam String amountMoney, Model model) {
-
         model.addAttribute("oldValue", amountMoney);
         try {
-            model.addAttribute("newValue", addAttribute.calculate(Double.parseDouble(amountMoney)));
+            model.addAttribute("newValue", calculate.calculate(Double.parseDouble(amountMoney)));
         } catch (NumberFormatException e) {
             model.addAttribute("newValue", "Wrong input");
         }

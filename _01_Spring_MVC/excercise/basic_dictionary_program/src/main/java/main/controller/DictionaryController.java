@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DictionaryController {
+
     @Autowired
     private IDictionaryService dictionary;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String showList() {
         return "home";
     }
 
-    @PostMapping("/home")
+    @PostMapping("/")
     public String greeting(@RequestParam String inputWord, Model model) {
         model.addAttribute("oldValue", inputWord);
         model.addAttribute("newValue", dictionary.search(inputWord));

@@ -1,5 +1,8 @@
 package main.services;
 
+import main.repository.DictionaryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -7,18 +10,12 @@ import java.util.Map;
 
 @Service
 public class DictionaryService implements IDictionaryService {
-    static Map<String, String> dictionaryMap = new LinkedHashMap<>();
-
-    static {
-        dictionaryMap.put("xin chao", "hello");
-        dictionaryMap.put("xin loi", "sorry");
-        dictionaryMap.put("cam on", "thank");
-        dictionaryMap.put("con cho", "dog");
-        dictionaryMap.put("con meo", "cat");
-    }
+    @Autowired
+    DictionaryRepository dictionaryRepository;
 
     @Override
     public String search(String input) {
+        Map<String,String> dictionaryMap = dictionaryRepository.getData();
         if (dictionaryMap.get(input) != null) {
             return dictionaryMap.get(input);
         } else {
