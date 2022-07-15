@@ -15,7 +15,7 @@ public class DictionaryService implements IDictionaryService {
 
     @Override
     public String search(String input) {
-        Map<String,String> dictionaryMap = dictionaryRepository.getData();
+        Map<String, String> dictionaryMap = dictionaryRepository.getData();
         if (dictionaryMap.get(input) != null) {
             return dictionaryMap.get(input);
         } else {

@@ -12,7 +12,7 @@ public class SandwichCondimentService implements ISandwichCondimentService {
     @Override
     public String[] search(String[] listCondiment) {
         String[] list;
-        if (listCondiment != null){
+        if (listCondiment != null) {
             list = listCondiment;
         } else {
             list = new String[]{"No Condiment !"};

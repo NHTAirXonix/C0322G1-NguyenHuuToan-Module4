@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IMailServices {
     List<MailSettings> getAll();
+
     void save(MailSettings mailSettings);
 
 }

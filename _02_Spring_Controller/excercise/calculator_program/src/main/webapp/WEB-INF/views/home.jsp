@@ -32,7 +32,7 @@
         }
 
         body {
-            background-image: radial-gradient(#0c5460,#e0e0e0);
+            background-image: radial-gradient(#0c5460, #e0e0e0);
         }
     </style>
 </head>
@@ -47,10 +47,12 @@
             </tr>
             <tr>
                 <th colspan="2">
-                    <input type="text" id="firstInput" name="firstInput" placeholder="First Input" value="${firstInput}">
+                    <input type="text" id="firstInput" name="firstInput" placeholder="First Input"
+                           value="${firstInput}">
                 </th>
                 <th colspan="2">
-                    <input type="text" id="secondInput" name="secondInput" placeholder="Second Input" value="${secondInput}">
+                    <input type="text" id="secondInput" name="secondInput" placeholder="Second Input"
+                           value="${secondInput}">
                 </th>
             </tr>
             <tr>

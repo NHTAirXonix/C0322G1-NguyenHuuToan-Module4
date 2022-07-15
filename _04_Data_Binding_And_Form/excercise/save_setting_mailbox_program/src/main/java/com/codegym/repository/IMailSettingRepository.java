@@ -7,6 +7,8 @@ import java.util.Map;
 
 public interface IMailSettingRepository {
     List<MailSettings> getAll();
+
     void save(MailSettings mailSettings);
-    Map<String,MailSettings> getData();
+
+    Map<String, MailSettings> getData();
 }

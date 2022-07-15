@@ -20,28 +20,35 @@
             height: 500px;
             background-color: white;
         }
+
         input {
             border-radius: 5px;
             font-size: 15px;
             margin-top: 5px;
         }
-        th{
+
+        th {
             padding: 5px;
             height: 50px;
         }
+
         body {
-            background-image: radial-gradient(#0c5460,#e0e0e0);
+            background-image: radial-gradient(#0c5460, #e0e0e0);
         }
     </style>
 </head>
 <body>
-    <div id="main">
-        <table style="margin: auto;width: 100%">
-            <tr><th><h1>SANDWICH CONDIMENT</h1></th></tr>
-            <c:forEach items="${listCondiment}" var="condiment">
-                <tr><th>${condiment}</th></tr>
-            </c:forEach>
-        </table>
-    </div>
+<div id="main">
+    <table style="margin: auto;width: 100%">
+        <tr>
+            <th><h1>SANDWICH CONDIMENT</h1></th>
+        </tr>
+        <c:forEach items="${listCondiment}" var="condiment">
+            <tr>
+                <th>${condiment}</th>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
 </html>
