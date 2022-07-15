@@ -10,5 +10,11 @@ public interface IMailSettingRepository {
 
     void save(MailSettings mailSettings);
 
-    Map<String, MailSettings> getData();
+    void update(MailSettings mailSettings);
+
+    MailSettings findById(String id);
+
+    String[] getPageSize();
+
+    String[] getLanguage();
 }

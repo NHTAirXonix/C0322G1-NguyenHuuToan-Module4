@@ -22,4 +22,26 @@ public class MailService implements IMailServices {
     public void save(MailSettings mailSettings) {
         iMailSettingRepository.save(mailSettings);
     }
+
+    @Override
+    public void update(MailSettings mailSettings) {
+        iMailSettingRepository.update(mailSettings);
+    }
+
+    @Override
+    public MailSettings findById(String id) {
+        return iMailSettingRepository.findById(id);
+    }
+
+    @Override
+    public String[] getPageSize() {
+        return iMailSettingRepository.getPageSize();
+    }
+
+    @Override
+    public String[] getLanguage() {
+        return iMailSettingRepository.getLanguage();
+    }
+
+
 }

@@ -9,4 +9,12 @@ public interface IMailServices {
 
     void save(MailSettings mailSettings);
 
+    void update(MailSettings mailSettings);
+
+    MailSettings findById(String id);
+
+    String[] getPageSize();
+
+    String[] getLanguage();
+
 }

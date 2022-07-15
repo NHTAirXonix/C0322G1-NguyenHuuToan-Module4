@@ -13,7 +13,6 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
     String[] gender = new String[]{"Nam", "Nu", "Khac"};
     String[] country = new String[]{"Viet Nam", "Lao", "Campuchia", "Thai Lan", "America"};
     String[] vehicle = new String[]{"Plane", "Boat", "Car", "Other"};
-
     String[] city = new String[]{"Da Nang", "Ho Chi Minh", "Ha Noi"};
     String[] district = new String[]{"DN-Lien Chieu", "DN-Hai Chau", "HCM-Quan1", "HCM-Quan2", "HN-Ba Dinh", "HN-Cau Giay"};
     String[] ward = new String[]{"DN-Hoa Minh", "HCM-Ben Nghe", "HN-Duong Do"};
@@ -25,7 +24,6 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
         medicalFormList.add(new MedicalForm("4", "Toan", "1999", "Nam", "Viet Nam", "123321", "Car", "444444", "444", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
         medicalFormList.add(new MedicalForm("5", "Khanh", "1999", "Nam", "Viet Nam", "123321", "Car", "555555", "555", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
     }
-
 
     @Override
     public List<MedicalForm> getAll() {

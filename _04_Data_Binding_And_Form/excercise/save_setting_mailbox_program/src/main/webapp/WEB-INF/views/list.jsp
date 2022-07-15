@@ -33,6 +33,7 @@
             <th>Page Size</th>
             <th>Spams filter</th>
             <th>Signature</th>
+            <th>Edit</th>
         </tr>
         <c:forEach var="temp" items="${mailSettingsList}">
             <tr>
@@ -40,6 +41,11 @@
                 <th>${temp.pageSize}</th>
                 <th>${temp.spamFilter}</th>
                 <th>${temp.signature}</th>
+                <th>
+                    <button>
+                        <a href="/edit/${temp.id}">EDIT</a>
+                    </button>
+                </th>
             </tr>
         </c:forEach>
         <tr>

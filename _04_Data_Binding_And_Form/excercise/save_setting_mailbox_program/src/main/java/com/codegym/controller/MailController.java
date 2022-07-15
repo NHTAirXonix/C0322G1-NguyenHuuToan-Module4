@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -28,15 +29,31 @@ public class MailController {
 
     @GetMapping(value = "/create")
     public String getFormCreate(Model model) {
+        model.addAttribute("pageSizeList", iMailServices.getPageSize());
+        model.addAttribute("languageList", iMailServices.getLanguage());
         model.addAttribute("mailSettings", new MailSettings());
         return "create";
     }
 
     @PostMapping(value = "/create")
     public String createMailSetting(@ModelAttribute("mailSettingsList") MailSettings mailSettings, RedirectAttributes redirectAttributes) {
-        MailSettings mailSettings1 = new MailSettings(mailSettings.getLanguages(), mailSettings.getPageSize(), mailSettings.getSpamFilter(), mailSettings.getSignature());
-        iMailServices.save(mailSettings1);
+        iMailServices.save(mailSettings);
         redirectAttributes.addFlashAttribute("msg", "Create Success");
+        return "redirect:/list";
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    public String getFormEdit(@PathVariable String id, Model model) {
+        model.addAttribute("pageSizeList", iMailServices.getPageSize());
+        model.addAttribute("languageList", iMailServices.getLanguage());
+        model.addAttribute("mailSettings", iMailServices.findById(id));
+        return "edit";
+    }
+
+    @PostMapping(value = "/update")
+    public String updateMailSetting(@ModelAttribute("mailSettingsList") MailSettings mailSettings, RedirectAttributes redirectAttributes) {
+        iMailServices.update(mailSettings);
+        redirectAttributes.addFlashAttribute("msg", "Update Success");
         return "redirect:/list";
     }
 }
