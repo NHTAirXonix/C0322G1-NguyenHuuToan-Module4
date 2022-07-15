@@ -14,16 +14,16 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
     String[] country = new String[]{"Viet Nam", "Lao", "Campuchia", "Thai Lan", "America"};
     String[] vehicle = new String[]{"Plane", "Boat", "Car", "Other"};
 
-    String[] city = new String[]{"Da Nang","Ho Chi Minh", "Ha Noi"};
-    String[] district = new String[]{"DN-Lien Chieu","DN-Hai Chau","HCM-Quan1","HCM-Quan2", "HN-Ba Dinh","HN-Cau Giay"};
-    String[] ward = new String[]{"DN-Hoa Minh","HCM-Ben Nghe", "HN-Duong Do"};
+    String[] city = new String[]{"Da Nang", "Ho Chi Minh", "Ha Noi"};
+    String[] district = new String[]{"DN-Lien Chieu", "DN-Hai Chau", "HCM-Quan1", "HCM-Quan2", "HN-Ba Dinh", "HN-Cau Giay"};
+    String[] ward = new String[]{"DN-Hoa Minh", "HCM-Ben Nghe", "HN-Duong Do"};
 
     static {
-        medicalFormList.add(new MedicalForm("1","Hao", "1999", "Nam", "Viet Nam", "123321", "Car", "111111", "111", "2022-10-10", "2022-10-10", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("2","Hoang", "1999", "Nam", "Viet Nam", "123321", "Car", "222222", "222", "2022-10-10", "2022-10-10", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("3","Duy", "1999", "Nam", "Viet Nam", "123321", "Car", "333333", "333", "2022-10-10", "2022-10-10", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("4","Toan", "1999", "Nam", "Viet Nam", "123321", "Car", "444444", "444", "2022-10-10", "2022-10-10", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("5","Khanh", "1999", "Nam", "Viet Nam", "123321", "Car", "555555", "555", "2022-10-10", "2022-10-10", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
+        medicalFormList.add(new MedicalForm("1", "Hao", "1999", "Nam", "Viet Nam", "123321", "Car", "111111", "111", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
+        medicalFormList.add(new MedicalForm("2", "Hoang", "1999", "Nam", "Viet Nam", "123321", "Car", "222222", "222", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
+        medicalFormList.add(new MedicalForm("3", "Duy", "1999", "Nam", "Viet Nam", "123321", "Car", "333333", "333", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
+        medicalFormList.add(new MedicalForm("4", "Toan", "1999", "Nam", "Viet Nam", "123321", "Car", "444444", "444", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
+        medicalFormList.add(new MedicalForm("5", "Khanh", "1999", "Nam", "Viet Nam", "123321", "Car", "555555", "555", "2022-10-10", "2022-10-10", "Da Nang", "Ho Chi Minh", "HCM-Quan1", "HCM-Ben Nghe", "11 Nguyen Tat Thanh", "123321", "hai@gmail.com", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No"));
     }
 
 
@@ -39,8 +39,8 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
 
     @Override
     public void update(String id, MedicalForm medicalForm) {
-        for (int i =0; i< medicalFormList.size();i++){
-            if (id.equals(medicalFormList.get(i).getId())){
+        for (int i = 0; i < medicalFormList.size(); i++) {
+            if (id.equals(medicalFormList.get(i).getId())) {
                 medicalFormList.get(i).setName(medicalForm.getName());
                 medicalFormList.get(i).setBirthYear(medicalForm.getBirthYear());
                 medicalFormList.get(i).setGender(medicalForm.getGender());
@@ -111,8 +111,8 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
     public MedicalForm findById(String id) {
         MedicalForm medicalForm = new MedicalForm();
         for (int i = 0; i < medicalFormList.size(); i++) {
-            if (id.equals(medicalFormList.get(i).getId())){
-                medicalForm =  medicalFormList.get(i);
+            if (id.equals(medicalFormList.get(i).getId())) {
+                medicalForm = medicalFormList.get(i);
             }
         }
         return medicalForm;

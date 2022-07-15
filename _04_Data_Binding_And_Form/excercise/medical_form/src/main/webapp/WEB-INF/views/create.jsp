@@ -162,19 +162,19 @@
                     Fever
                 </td>
                 <td>
-                    <form:radiobutton  path="fever" name="fever" value="Yes" />Yes
+                    <form:radiobutton path="fever" name="fever" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton  path="fever" name="fever" value="No" />No
+                    <form:radiobutton path="fever" name="fever" value="No"/>No
                 </td>
                 <td>
                     Vomit
                 </td>
                 <td>
-                    <form:radiobutton  path="vomit" name="vomit" value="Yes" />Yes
+                    <form:radiobutton path="vomit" name="vomit" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton path="vomit" name="vomit" value="No" />No
+                    <form:radiobutton path="vomit" name="vomit" value="No"/>No
                 </td>
             </tr>
             <tr>
@@ -182,19 +182,19 @@
                     Cough
                 </td>
                 <td>
-                    <form:radiobutton  path="cough" name="cough" value="Yes" />Yes
+                    <form:radiobutton path="cough" name="cough" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton  path="cough" name="cough" value="No" />No
+                    <form:radiobutton path="cough" name="cough" value="No"/>No
                 </td>
                 <td>
                     Diarrhea
                 </td>
                 <td>
-                    <form:radiobutton  path="diarrhea" name="diarrhea" value="Yes" />Yes
+                    <form:radiobutton path="diarrhea" name="diarrhea" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton path="diarrhea" name="diarrhea" value="No" />No
+                    <form:radiobutton path="diarrhea" name="diarrhea" value="No"/>No
                 </td>
             </tr>
             <tr>
@@ -202,19 +202,19 @@
                     Difficulty Breathing
                 </td>
                 <td>
-                    <form:radiobutton  path="difficultyBreathing" name="difficultyBreathing" value="Yes" />Yes
+                    <form:radiobutton path="difficultyBreathing" name="difficultyBreathing" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton  path="difficultyBreathing" name="difficultyBreathing" value="No" />No
+                    <form:radiobutton path="difficultyBreathing" name="difficultyBreathing" value="No"/>No
                 </td>
                 <td>
                     Bleeding
                 </td>
                 <td>
-                    <form:radiobutton  path="bleeding" name="bleeding" value="Yes" />Yes
+                    <form:radiobutton path="bleeding" name="bleeding" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton path="bleeding" name="bleeding" value="No" />No
+                    <form:radiobutton path="bleeding" name="bleeding" value="No"/>No
                 </td>
             </tr>
             <tr>
@@ -222,19 +222,19 @@
                     Sore Throat
                 </td>
                 <td>
-                    <form:radiobutton  path="soreThroat" name="soreThroat" value="Yes" />Yes
+                    <form:radiobutton path="soreThroat" name="soreThroat" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton  path="soreThroat" name="soreThroat" value="No" />No
+                    <form:radiobutton path="soreThroat" name="soreThroat" value="No"/>No
                 </td>
                 <td>
                     Rash
                 </td>
                 <td>
-                    <form:radiobutton  path="rash" name="rash" value="Yes" />Yes
+                    <form:radiobutton path="rash" name="rash" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton path="rash" name="rash" value="No" />No
+                    <form:radiobutton path="rash" name="rash" value="No"/>No
                 </td>
             </tr>
             <tr>
@@ -247,10 +247,10 @@
                     Animal Contact
                 </td>
                 <td>
-                    <form:radiobutton  path="animalContact" name="animalContact" value="Yes" />Yes
+                    <form:radiobutton path="animalContact" name="animalContact" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton  path="animalContact" name="animalContact" value="No" />No
+                    <form:radiobutton path="animalContact" name="animalContact" value="No"/>No
                 </td>
             </tr>
             <tr>
@@ -258,10 +258,10 @@
                     Patient Contact
                 </td>
                 <td>
-                    <form:radiobutton  path="patientContact" name="patientContact" value="Yes" />Yes
+                    <form:radiobutton path="patientContact" name="patientContact" value="Yes"/>Yes
                 </td>
                 <td>
-                    <form:radiobutton path="patientContact" name="patientContact" value="No" />No
+                    <form:radiobutton path="patientContact" name="patientContact" value="No"/>No
                 </td>
             </tr>
             <tr>

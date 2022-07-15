@@ -65,9 +65,11 @@ public class MedicalFormController {
         return "edit";
     }
 
+    // CALL METHOD UPDATE
+
     @PostMapping(value = "/update")
     public String updateMailSetting(@ModelAttribute("medicalForm") MedicalForm medicalForm, RedirectAttributes redirectAttributes) {
-        medicalFormServices.update(medicalForm.getId(),medicalForm);
+        medicalFormServices.update(medicalForm.getId(), medicalForm);
         redirectAttributes.addFlashAttribute("msg", "Update Success");
         return "redirect:/list";
     }
