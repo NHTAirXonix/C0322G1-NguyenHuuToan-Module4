@@ -67,7 +67,7 @@ public class MedicalFormController {
 
     @PostMapping(value = "/update")
     public String updateMailSetting(@ModelAttribute("medicalForm") MedicalForm medicalForm, RedirectAttributes redirectAttributes) {
-        medicalFormServices.save(medicalForm);
+        medicalFormServices.update(medicalForm.getId(),medicalForm);
         redirectAttributes.addFlashAttribute("msg", "Update Success");
         return "redirect:/list";
     }
