@@ -26,7 +26,7 @@
 </head>
 <body>
 <div id="main">
-    <form:form modelAttribute="medicalForm" action="/create" method="post">
+    <form:form modelAttribute="medicalForm" action="/update" method="post">
         <h1 style="text-align: center">MEDICAL FORM</h1>
         <table width="100%">
             <tr>
@@ -38,7 +38,6 @@
                     </p>
                 </th>
             </tr>
-
             <tr>
                 <th colspan="6">
                     <p style="color: red"><b>Caution: You will be in jail if the information you provide is wrong</b>

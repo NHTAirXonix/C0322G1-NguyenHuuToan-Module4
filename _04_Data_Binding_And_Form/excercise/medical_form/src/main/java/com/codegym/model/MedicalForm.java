@@ -1,6 +1,7 @@
 package com.codegym.model;
 
 public class MedicalForm {
+    private String id;
     private String name;
     private String birthYear;
     private String gender;
@@ -36,7 +37,8 @@ public class MedicalForm {
     public MedicalForm() {
     }
 
-    public MedicalForm(String name, String birthYear, String gender, String country, String idCardNumber, String verhice, String verhiceNumber, String verhiceNumberSlot, String dayStart, String dayEnd, String city, String city2, String district, String ward, String address, String phone, String email, String fever, String vomit, String cough, String diarrhea, String difficultyBreathing, String bleeding, String soreThroat, String rash, String animalContact, String patientContact) {
+    public MedicalForm(String id, String name, String birthYear, String gender, String country, String idCardNumber, String verhice, String verhiceNumber, String verhiceNumberSlot, String dayStart, String dayEnd, String city, String city2, String district, String ward, String address, String phone, String email, String fever, String vomit, String cough, String diarrhea, String difficultyBreathing, String bleeding, String soreThroat, String rash, String animalContact, String patientContact) {
+        this.id = id;
         this.name = name;
         this.birthYear = birthYear;
         this.gender = gender;
@@ -64,6 +66,14 @@ public class MedicalForm {
         this.rash = rash;
         this.animalContact = animalContact;
         this.patientContact = patientContact;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

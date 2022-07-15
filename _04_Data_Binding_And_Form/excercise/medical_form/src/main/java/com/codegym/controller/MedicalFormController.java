@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,6 +26,8 @@ public class MedicalFormController {
         return "list";
     }
 
+    // CALL FORM CREATE
+
     @GetMapping(value = "/create")
     public String getFormCreate(Model model) {
         model.addAttribute("listYear", medicalFormServices.getYear());
@@ -38,39 +41,34 @@ public class MedicalFormController {
         return "create";
     }
 
+    // CALL METHOD SAVE
+
     @PostMapping(value = "/create")
     public String createMailSetting(@ModelAttribute("medicalForm") MedicalForm medicalForm, RedirectAttributes redirectAttributes) {
-        MedicalForm medicalForm1 = new MedicalForm(
-                medicalForm.getName(),
-                medicalForm.getBirthYear(),
-                medicalForm.getGender(),
-                medicalForm.getCountry(),
-                medicalForm.getIdCardNumber(),
-                medicalForm.getVerhice(),
-                medicalForm.getVerhiceNumber(),
-                medicalForm.getVerhiceNumberSlot(),
-                medicalForm.getDayStart(),
-                medicalForm.getDayEnd(),
-                medicalForm.getCity(),
-                medicalForm.getCity2(),
-                medicalForm.getDistrict(),
-                medicalForm.getWard(),
-                medicalForm.getAddress(),
-                medicalForm.getPhone(),
-                medicalForm.getEmail(),
-                medicalForm.getFever(),
-                medicalForm.getVomit(),
-                medicalForm.getCough(),
-                medicalForm.getDiarrhea(),
-                medicalForm.getDifficultyBreathing(),
-                medicalForm.getBleeding(),
-                medicalForm.getSoreThroat(),
-                medicalForm.getRash(),
-                medicalForm.getAnimalContact(),
-                medicalForm.getPatientContact()
-        );
-        medicalFormServices.save(medicalForm1);
+        medicalFormServices.save(medicalForm);
         redirectAttributes.addFlashAttribute("msg", "Create Success");
+        return "redirect:/list";
+    }
+
+    // CALL FORM EDIT
+
+    @GetMapping(value = "/edit/{id}")
+    public String getFormEdit(@PathVariable String id, Model model) {
+        model.addAttribute("listYear", medicalFormServices.getYear());
+        model.addAttribute("listGender", medicalFormServices.getGender());
+        model.addAttribute("listCountry", medicalFormServices.getCountry());
+        model.addAttribute("listVehicle", medicalFormServices.getVehicle());
+        model.addAttribute("listCity", medicalFormServices.getCity());
+        model.addAttribute("listDistrict", medicalFormServices.getDistrict());
+        model.addAttribute("listWard", medicalFormServices.getWard());
+        model.addAttribute("medicalForm", medicalFormServices.findById(id));
+        return "edit";
+    }
+
+    @PostMapping(value = "/update")
+    public String updateMailSetting(@ModelAttribute("medicalForm") MedicalForm medicalForm, RedirectAttributes redirectAttributes) {
+        medicalFormServices.save(medicalForm);
+        redirectAttributes.addFlashAttribute("msg", "Update Success");
         return "redirect:/list";
     }
 }

@@ -19,11 +19,11 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
     String[] ward = new String[]{"DN-Hoa Minh","HCM-Ben Nghe", "HN-Duong Do"};
 
     static {
-        medicalFormList.add(new MedicalForm("Hao", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("Hoang", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("Duy", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("Toan", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
-        medicalFormList.add(new MedicalForm("Khanh", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
+        medicalFormList.add(new MedicalForm("1","Hao", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
+        medicalFormList.add(new MedicalForm("2","Hoang", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
+        medicalFormList.add(new MedicalForm("3","Duy", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
+        medicalFormList.add(new MedicalForm("4","Toan", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
+        medicalFormList.add(new MedicalForm("5","Khanh", "1999", "Nam", "Viet Nam", "123321", "Car", "123321", "333", "10/01/2022", "10/03/2022", "Da Nang","Ho Chi Minh","HCM-Quan1","HCM-Ben Nghe","11 Nguyen Tat Thanh","123321","hai@gmail.com","Yes","No","Yes","No","Yes","No","Yes","No","Yes","No"));
     }
 
 
@@ -35,6 +35,15 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
     @Override
     public void save(MedicalForm medicalForm) {
         medicalFormList.add(medicalForm);
+    }
+
+    @Override
+    public void update(String id, MedicalForm medicalForm) {
+        for (int i =0; i< medicalFormList.size();i++){
+            if (id.equals(medicalFormList.get(i).getId())){
+                medicalFormList.get(i) = medicalForm;
+            }
+        }
     }
 
     @Override
@@ -70,6 +79,17 @@ public class MedicalFormRepository implements com.codegym.repository.MedicalForm
     @Override
     public String[] getWard() {
         return ward;
+    }
+
+    @Override
+    public MedicalForm findById(String id) {
+        MedicalForm medicalForm = new MedicalForm();
+        for (int i = 0; i < medicalFormList.size(); i++) {
+            if (id.equals(medicalFormList.get(i).getId())){
+                medicalForm =  medicalFormList.get(i);
+            }
+        }
+        return medicalForm;
     }
 }
 

@@ -9,6 +9,10 @@ public interface MedicalFormRepository {
 
     void save(MedicalForm medicalForm);
 
+    void update(String id, MedicalForm medicalForm);
+
+    MedicalForm findById(String id);
+
     String[] getYear();
 
     String[] getGender();
@@ -22,4 +26,6 @@ public interface MedicalFormRepository {
     String[] getDistrict();
 
     String[] getWard();
+
+
 }

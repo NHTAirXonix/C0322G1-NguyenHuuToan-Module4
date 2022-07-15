@@ -40,6 +40,7 @@
             <th>City</th>
             <th>District</th>
             <th>Ward</th>
+            <th>Edit</th>
         </tr>
         </thead>
         <c:forEach var="temp" items="${medicalFormList}">
@@ -58,6 +59,12 @@
                 <th>${temp.city2}</th>
                 <th>${temp.district}</th>
                 <th>${temp.ward}</th>
+                <th>
+                    <button>
+                        <a href="/edit/${temp.id}">EDIT</a>
+                    </button>
+
+                </th>
             </tr>
         </c:forEach>
         <tr>

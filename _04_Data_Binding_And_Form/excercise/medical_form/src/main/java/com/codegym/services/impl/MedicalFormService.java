@@ -24,6 +24,11 @@ public class MedicalFormService implements MedicalFormServices {
     }
 
     @Override
+    public void update(String id, MedicalForm medicalForm) {
+        medicalFormRepository.update(id, medicalForm);
+    }
+
+    @Override
     public String[] getYear() {
         return medicalFormRepository.getYear();
     }
@@ -56,5 +61,10 @@ public class MedicalFormService implements MedicalFormServices {
     @Override
     public String[] getWard() {
         return medicalFormRepository.getWard();
+    }
+
+    @Override
+    public MedicalForm findById(String id) {
+        return medicalFormRepository.findById(id);
     }
 }
