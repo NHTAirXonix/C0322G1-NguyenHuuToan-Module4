@@ -23,7 +23,7 @@ public class ProductController {
     public String index(Model model) {
         List<Product> productList = iProductRepository.findAll();
         model.addAttribute("product", new Product());
-        model.addAttribute("productList",productList);
+        model.addAttribute("productList", productList);
         return "/indexProduct";
     }
 
@@ -34,7 +34,7 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public String save(Product product,RedirectAttributes redirect) {
+    public String save(Product product, RedirectAttributes redirect) {
         iProductRepository.save(product);
         redirect.addFlashAttribute("success", "Add New product successfully!");
         return "redirect:/product";
