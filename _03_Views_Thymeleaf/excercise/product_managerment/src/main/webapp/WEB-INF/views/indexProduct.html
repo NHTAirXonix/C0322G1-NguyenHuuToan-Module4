@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>PRODUCT LIST</h3>
+
+<table style="width: 100%">
+    <tr>
+        <th>
+            <p>
+                <button style="background-color: #4CAF50; color: white; border-color: white;border-radius: 5px;height: 40px;width: 200px">
+                    <a style="text-decoration: none; color: white" th:href="@{/product/create}">
+                        Add New Product
+                    </a>
+                </button>
+            </p>
+        </th>
+        <th>
+            <p>
+                <button style="background-color: #4CAF50; color: white; border-color: white;border-radius: 5px;height: 40px;width: 200px">
+                    <a style="text-decoration: none; color: white" th:href="@{/product}">
+                        Back to product list
+                    </a>
+                </button>
+
+            </p>
+        </th>
+        <th>
+            <div>
+                <form th:action="@{/product/search }" th:object="${product}" method="get" novalidate="novalidate">
+                    <input type="text" th:field="*{name}">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+        </th>
+    </tr>
+</table>
+
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Detail</th>
+        <th>Manufacturer</th>
+        <th>Edit</th>
+        <th>Show Detail</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${productList}">
+        <td th:text="${row.getId()}"></td>
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td th:text="${row.getDetail()}"></td>
+        <td th:text="${row.getManufacturer()}"></td>
+        <td><a th:href="@{/product/{id}/edit(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/product/{id}/view(id=${row.getId()})}">view</a></td>
+        <td><a th:href="@{/product/{id}/delete(id=${row.getId()})}">delete</a></td>
+    </tr>
+    <tr th:if="${productList.isEmpty()}">
+        <th colspan="8">
+            <div style="text-align: center" >
+                <span  th:text="Nothing"></span>
+            </div>
+        </th>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
