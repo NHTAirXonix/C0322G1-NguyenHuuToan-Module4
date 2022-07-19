@@ -85,7 +85,7 @@
             <td th:text="${music.nameMusic}"></td>
             <td th:text="${music.nameArtist}"></td>
             <td th:text="${music.getType()}"></td>
-            <td ><a  th:text="${music.getUrl()}" th:href="${music.getUrl()}">go</a></td>
+            <td><a th:text="${music.getUrl()}" th:href="${music.getUrl()}"></a></td>
             <td>
                 <a th:href="@{/edit/{id}(id = ${music.getId()})}">Edit</a>
             </td>
@@ -100,7 +100,7 @@
                         </a>
                     </button>
                 </div>
-<!--                <a th:href="@{/delete/{id}(id = ${music.getId()})}">Delete</a>-->
+                <!--                <a th:href="@{/delete/{id}(id = ${music.getId()})}">Delete</a>-->
             </td>
         </tr>
         </tbody>
@@ -136,7 +136,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title w-100 text-left"> Warning !</h4>
-                <button type="button" class="redButton" style="height: 30px;width: 30px" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="redButton" style="height: 30px;width: 30px" data-dismiss="modal"
+                        aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -167,25 +168,25 @@
 
 
     // $(document).ready(function () {
-        $('#tableEmployee').dataTable({
-            "dom": 'lrtip',
-            "lengthChange": false,
-            "pageLength": 3
-        });
+    $('#tableEmployee').dataTable({
+        "dom": 'lrtip',
+        "lengthChange": false,
+        "pageLength": 3
+    });
 
-        var id;
-        var name1;
+    var id;
+    var name1;
 
-        function customerIndex(index, name) {
-            document.getElementById("confirm").innerHTML = "Do you want to delete music have " + "<br>ID is: " + index + "<br>Name is:" + name;
-            id = index;
-            name1 = name;
-        };
+    function customerIndex(index, name) {
+        document.getElementById("confirm").innerHTML = "Do you want to delete music have " + "<br>ID is: " + index + "<br>Name is:" + name;
+        id = index;
+        name1 = name;
+    };
 
-        function customerIndex2() {
-            let link = "/delete/" + id;
-            window.location.href = link;
-        };
+    function customerIndex2() {
+        let link = "/delete/" + id;
+        window.location.href = link;
+    };
     // })
 </script>
 

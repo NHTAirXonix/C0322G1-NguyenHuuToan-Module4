@@ -23,7 +23,7 @@ public class ProductController {
     public String index(Model model) {
         List<Product> productList = productService.findAll();
         model.addAttribute("product", new Product());
-        model.addAttribute("productList",productList);
+        model.addAttribute("productList", productList);
         return "indexProduct";
     }
 

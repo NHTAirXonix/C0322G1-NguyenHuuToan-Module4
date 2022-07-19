@@ -1,6 +1,7 @@
 package main.repository;
 
 import main.model.Product;
+
 import java.util.List;
 
 public interface IProductRepository {

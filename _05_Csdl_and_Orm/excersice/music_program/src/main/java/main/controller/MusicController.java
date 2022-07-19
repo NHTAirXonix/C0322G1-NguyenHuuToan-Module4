@@ -17,7 +17,7 @@ public class MusicController {
     private MusicService musicService;
 
     @GetMapping("/list")
-    public String showMusicList(Model model){
+    public String showMusicList(Model model) {
         List<Music> musicList = musicService.findAll();
         model.addAttribute("music", new Music());
         model.addAttribute("musicList", musicList);
@@ -25,14 +25,14 @@ public class MusicController {
     }
 
     @GetMapping("/create")
-    public String showFormAddNewMusic(Model model){
+    public String showFormAddNewMusic(Model model) {
         Music newMusic = new Music();
         model.addAttribute("newMusic", newMusic);
         return "music_add_new";
     }
 
     @PostMapping("/create")
-    public String addNewMusic(Music music){
+    public String addNewMusic(Music music) {
         musicService.save(music);
         return "redirect:/list";
     }
@@ -56,7 +56,7 @@ public class MusicController {
     }
 
     @PostMapping("/delete")
-    public String delete(Music musicDelete,Model model) {
+    public String delete(Music musicDelete, Model model) {
         musicService.remove(musicDelete);
         List<Music> musicList = musicService.findAll();
         model.addAttribute("musicList", musicList);

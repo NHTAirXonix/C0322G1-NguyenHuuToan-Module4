@@ -29,7 +29,7 @@ public class MusicService implements IMusicService {
 
     @Override
     public void update(int id, Music music) {
-        iMusicRepository.update(id,music);
+        iMusicRepository.update(id, music);
     }
 
     @Override

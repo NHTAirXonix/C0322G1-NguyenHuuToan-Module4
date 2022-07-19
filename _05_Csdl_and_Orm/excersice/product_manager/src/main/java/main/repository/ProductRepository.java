@@ -11,7 +11,7 @@ public class ProductRepository implements main.repository.IProductRepository {
     @Override
     public List<Product> findAll() {
         String select = "SELECT m from product m";
-        List<Product> productList = BaseRepository.entityManager.createQuery(select,Product.class).getResultList();
+        List<Product> productList = BaseRepository.entityManager.createQuery(select, Product.class).getResultList();
         return productList;
     }
 
@@ -26,7 +26,7 @@ public class ProductRepository implements main.repository.IProductRepository {
     @Override
     public Product findById(int id) {
         String select = "SELECT m from product m";
-        List<Product> productList = BaseRepository.entityManager.createQuery(select,Product.class).getResultList();
+        List<Product> productList = BaseRepository.entityManager.createQuery(select, Product.class).getResultList();
         for (int i = 0; i < productList.size(); i++) {
             if (id == productList.get(i).getId()) {
                 return productList.get(i);
@@ -38,7 +38,7 @@ public class ProductRepository implements main.repository.IProductRepository {
     @Override
     public void update(int id, Product product) {
         String select = "SELECT m from product m";
-        List<Product> productList = BaseRepository.entityManager.createQuery(select,Product.class).getResultList();
+        List<Product> productList = BaseRepository.entityManager.createQuery(select, Product.class).getResultList();
         for (int i = 0; i < productList.size(); i++) {
             if (id == productList.get(i).getId()) {
                 productList.get(i).setName(product.getName());
@@ -60,7 +60,7 @@ public class ProductRepository implements main.repository.IProductRepository {
     @Override
     public List<Product> searchByName(Product product) {
         String select = "SELECT m from product m";
-        List<Product> productList = BaseRepository.entityManager.createQuery(select,Product.class).getResultList();
+        List<Product> productList = BaseRepository.entityManager.createQuery(select, Product.class).getResultList();
         List<Product> listSearchByName = new ArrayList<>();
         for (int i = 0; i < productList.size(); i++) {
             if (productList.get(i).getName().contains(product.getName())) {

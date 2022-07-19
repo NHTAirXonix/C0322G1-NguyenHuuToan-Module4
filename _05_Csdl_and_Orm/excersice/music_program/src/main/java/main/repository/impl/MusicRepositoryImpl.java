@@ -7,6 +7,7 @@ import main.repository.IMusicRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityTransaction;
@@ -18,7 +19,7 @@ public class MusicRepositoryImpl implements IMusicRepository {
     @Override
     public List<Music> findAll() {
         String select = "SELECT m from music m";
-        List<Music> musicList = BaseRepository.entityManager.createQuery(select,Music.class).getResultList();
+        List<Music> musicList = BaseRepository.entityManager.createQuery(select, Music.class).getResultList();
         return musicList;
     }
 
@@ -33,9 +34,9 @@ public class MusicRepositoryImpl implements IMusicRepository {
     @Override
     public Music findById(int id) {
         String select = "SELECT m from music m";
-        List<Music> musicList = BaseRepository.entityManager.createQuery(select,Music.class).getResultList();
+        List<Music> musicList = BaseRepository.entityManager.createQuery(select, Music.class).getResultList();
         for (int i = 0; i < musicList.size(); i++) {
-            if(id == musicList.get(i).getId()){
+            if (id == musicList.get(i).getId()) {
                 return musicList.get(i);
             }
         }
@@ -45,9 +46,9 @@ public class MusicRepositoryImpl implements IMusicRepository {
     @Override
     public void update(int id, Music music) {
         String select = "SELECT m from music m";
-        List<Music> musicList = BaseRepository.entityManager.createQuery(select,Music.class).getResultList();
+        List<Music> musicList = BaseRepository.entityManager.createQuery(select, Music.class).getResultList();
         for (int i = 0; i < musicList.size(); i++) {
-            if(id == musicList.get(i).getId()){
+            if (id == musicList.get(i).getId()) {
                 musicList.get(i).setNameArtist(music.getNameArtist());
                 musicList.get(i).setNameMusic(music.getNameMusic());
                 musicList.get(i).setType(music.getType());
@@ -68,9 +69,9 @@ public class MusicRepositoryImpl implements IMusicRepository {
     public List<Music> searchByName(Music music) {
         List<Music> musicListSearch = new ArrayList<>();
         String select = "SELECT m from music m";
-        List<Music> musicList = BaseRepository.entityManager.createQuery(select,Music.class).getResultList();
-        for (int i = 0; i < musicList.size() ; i++) {
-            if (musicList.get(i).getNameMusic().contains(music.getNameMusic())){
+        List<Music> musicList = BaseRepository.entityManager.createQuery(select, Music.class).getResultList();
+        for (int i = 0; i < musicList.size(); i++) {
+            if (musicList.get(i).getNameMusic().contains(music.getNameMusic())) {
                 musicListSearch.add(musicList.get(i));
             }
         }
