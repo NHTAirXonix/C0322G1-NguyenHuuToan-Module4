@@ -79,5 +79,47 @@
     </tr>
     </tbody>
 </table>
+
+<!--MODAL DELETE-->
+
+<div class="modal" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-100 text-left"> Warning !</h4>
+                <button type="button" class="redButton" style="height: 30px;width: 30px" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" onclick="customerIndex2()">
+                    <a class="text-white">Xóa</a>
+                </button>
+                <button type="button" class="btn btn-dark " data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
+
+<script>
+    var id;
+    var name1;
+
+    function customerIndex(index, name) {
+        document.getElementById("confirm").innerHTML = "Do you want to delete customer have " + "<br>ID is: " + index + "<br>Name is:" + name;
+        id = index;
+        name1 = name;
+    };
+
+    function customerIndex2() {
+        let link = "/customer/delete/" + id;
+        window.location.href = link;
+    };
+</script>
 </html>
