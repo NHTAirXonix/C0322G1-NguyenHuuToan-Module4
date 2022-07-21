@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Add New Product</h3>
+<p>
+    <a th:href="@{/product}">
+        Back To Product List
+    </a>
+</p>
+<div>
+    <form th:action="@{/save}" th:object="${product}" method="POST" novalidate="novalidate">
+        <table>
+            <tr>
+                <th>Product Id</th>
+                <th><input type="text" th:field="*{id}"/></th>
+                <th><p style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p></th>
+            </tr>
+            <tr>
+                <th>Product Name</th>
+                <th><input type="text" th:field="*{name}"/></th>
+                <th><p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p></th>
+            </tr>
+            <tr>
+                <th>Product Price</th>
+                <th><input type="email" th:field="*{price}"/></th>
+                <th><p style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p></th>
+            </tr>
+            <tr>
+                <th>Product Detail</th>
+                <th><input type="text" th:field="*{detail}"/></th>
+                <th><p style="color: red" th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}"></p></th>
+            </tr>
+            <tr>
+                <th>Product Manufacturer</th>
+                <th><input type="text" th:field="*{manufacturer}"/></th>
+                <th><p style="color: red" th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>Product Status</th>
+                <th><input type="text" th:field="*{status}" readonly placeholder="Auto fill"/></th>
+                <th><p style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p></th>
+            </tr>
+            <tr>
+                <th colspan="3"><input type="submit" value="Save"/></th>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

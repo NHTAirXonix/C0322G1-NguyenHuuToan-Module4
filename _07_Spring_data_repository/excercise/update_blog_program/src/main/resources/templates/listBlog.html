@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="font-family: Arial">
+<h2 style="text-align: center; background-image: linear-gradient(yellow,orange)">BLOG LIST</h2>
+<p>
+    <span><button><a style="text-decoration: none" th:href="@{/create}">Add New Blog</a></button></span>
+    <span><button><a style="text-decoration: none"
+                     th:href="@{/showListCategory}">Show List Blog Category</a></button></span>
+    <span><button><a style="text-decoration: none" th:href="@{/list}">Back to product list</a></button></span>
+</p>
+<form th:action="@{/list}" th:object="${blog}" method="get">
+    <input placeholder="Enter the blog's name" type="text"
+           th:field="*{title}">
+    <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+</form>
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Create Day</th>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Edit</th>
+        <th>Show Detail</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,rowStat : ${blogList}">
+        <td th:text="${blog.idBlog}"></td>
+        <td th:text="${blog.createDay}"></td>
+        <td th:text="${blog.category.name}"></td>
+        <td th:text="${blog.title}"></td>
+        <td><a th:href="@{/edit/{id}(id=${blog.idBlog})}">Edit</a></td>
+        <td><a th:href="@{/view/{id}(id=${blog.idBlog})}">view</a></td>
+        <td><a th:href="@{/delete/{id}(id=${blog.idBlog})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<div style="text-align: center">
+    <span th:each="pageNo: ${#numbers.sequence(0,blogList.totalPages - 1)}">
+        <a th:href="@{/list(page = ${pageNo}, title = ${title})}"
+           th:text="${pageNo+1}"></a>
+    </span>
+</div>
+</body>
+</html>

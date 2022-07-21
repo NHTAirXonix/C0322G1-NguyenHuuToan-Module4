@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<h3>Edit Category</h3>
+<p>
+    <a th:href="@{/list}">
+        Back To Product List
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/updateCategory}" th:object="${category}" method="POST" novalidate="novalidate">
+        <div>
+            <label>Category ID</label>
+            <input readonly type="text" th:field="*{id}"/>
+        </div>
+        <div>
+            <label>Category Name</label>
+            <input type="text" th:field="*{name}"/>
+        </div>
+        <input type="submit" value="Edit"/>
+    </form>
+</div>
+</body>
+</html>

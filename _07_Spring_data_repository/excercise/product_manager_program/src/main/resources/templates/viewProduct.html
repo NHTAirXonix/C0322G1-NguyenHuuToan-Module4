@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>View Product</h3>
+<p>
+    <a th:href="@{/list}">
+        Back To Product List
+    </a>
+</p>
+
+<div id="form">
+    <div th:object="${product}">
+        <table>
+            <tr>
+                <th>Product Id</th>
+                <th><input type="text" th:field="*{id}"/></th>
+            </tr>
+            <tr>
+                <th>Product Name</th>
+                <th><input type="text" th:field="*{name}"/></th>
+            </tr>
+            <tr>
+                <th>Product Price</th>
+                <th><input type="email" th:field="*{price}"/></th>
+            </tr>
+            <tr>
+                <th>Product Detail</th>
+                <th><input type="text" th:field="*{detail}"/></th>
+            </tr>
+            <tr>
+                <th>Product Manufacturer</th>
+                <th><input type="text" th:field="*{manufacturer}"/></th>
+            </tr>
+            <tr>
+                <th>Product Status</th>
+                <th><input type="text" th:field="*{status}" readonly placeholder="Auto fill"/></th>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
