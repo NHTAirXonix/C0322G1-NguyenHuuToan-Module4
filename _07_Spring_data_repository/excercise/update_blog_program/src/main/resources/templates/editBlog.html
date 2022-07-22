@@ -23,8 +23,8 @@
         <div>
             <label>Category: </label>
             <select th:field="*{category}">
+                <option th:value="${''}" th:text="All">
                 <option th:each="category: ${listCategory}" th:value="${category.id}" th:text="${category.name}">
-
                 </option>
             </select>
         </div>

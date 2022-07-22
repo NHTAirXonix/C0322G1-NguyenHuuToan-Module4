@@ -29,8 +29,8 @@
     </div>
 </div>
 <div>
-    <form th:action="@{/list }" th:object="${product}" method="get" novalidate="novalidate">
-        <input type="text" th:field="*{name}">
+    <form th:action="@{/list}" th:object="${product}" method="get" novalidate="novalidate">
+        <input type="text" th:field="*{name}" th:value="${name}">
         <input type="submit" value="Search">
     </form>
 </div>

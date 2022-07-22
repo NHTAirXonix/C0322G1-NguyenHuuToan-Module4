@@ -17,8 +17,8 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     @Query(value = "select * from blog", nativeQuery = true)
     Page<Blog> findAllBlogInDatabase(Pageable pageable);
 
-    @Query(value = "select * from blog where blog_title like %:title%", nativeQuery = true)
-    Page<Blog> findByTitleOfBlog(@Param("title") String title, Pageable pageable);
+    @Query(value = "select * from blog where blog_title like %:title% and id_category like %:id%" , nativeQuery = true)
+    Page<Blog> findByTitleOfBlog(@Param("title") String title, @Param("id") String id, Pageable pageable);
 
     @Query(value = "select * from blog where blog_id = :id", nativeQuery = true)
     Blog findBlogWithId(@Param("id") Integer id);
@@ -43,5 +43,10 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     @Query(value = "delete from blog where blog_id = :id", nativeQuery = true)
     void delete(@Param("id") Integer id);
 
+    @Modifying
+    @Query(value = "delete from blog where id_category = :id", nativeQuery = true)
+    void deleteByCategory(@Param("id") Integer id);
 
+    @Query(value = "select * from blog where id_category = :id", nativeQuery = true)
+    Page<Blog> findALlByCategoryId(@Param("id") Integer id, Pageable pageable);
 }

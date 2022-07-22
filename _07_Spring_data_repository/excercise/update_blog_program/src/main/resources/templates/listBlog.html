@@ -11,10 +11,17 @@
     <span><button><a style="text-decoration: none"
                      th:href="@{/showListCategory}">Show List Blog Category</a></button></span>
     <span><button><a style="text-decoration: none" th:href="@{/list}">Back to product list</a></button></span>
+    <span><button><a style="text-decoration: none"
+                     th:href="@{/listProvideByCategory}">Show by category</a></button></span>
 </p>
-<form th:action="@{/list}" th:object="${blog}" method="get">
+<form th:action="@{/list}" method="get">
     <input placeholder="Enter the blog's name" type="text"
-           th:field="*{title}">
+           name="title">
+    <select name="id">
+        <option th:value="${''}" th:text="${'All'}">
+        <option th:each="category: ${categoryList}" th:value="${category.id}" th:text="${category.name}">
+        </option>
+    </select>
     <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
 </form>
 <div class="notify">
@@ -49,7 +56,7 @@
 <br>
 <div style="text-align: center">
     <span th:each="pageNo: ${#numbers.sequence(0,blogList.totalPages - 1)}">
-        <a th:href="@{/list(page = ${pageNo}, title = ${title})}"
+        <a th:href="@{/list(page = ${pageNo}, title = ${title}, id = ${id})}"
            th:text="${pageNo+1}"></a>
     </span>
 </div>

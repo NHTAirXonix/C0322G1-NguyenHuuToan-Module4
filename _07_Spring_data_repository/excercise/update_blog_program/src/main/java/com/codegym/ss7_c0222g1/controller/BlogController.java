@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 public class BlogController {
     @Autowired
@@ -30,12 +32,15 @@ public class BlogController {
     @GetMapping("/list")
     public String index(@RequestParam(name = "page", defaultValue = "0") int page,
                         @RequestParam(name = "title", defaultValue = "") String title,
+                        @RequestParam(name = "id", defaultValue = "") String id,
                         Model model) {
         Sort sort = Sort.by("create_day").ascending().and(Sort.by("blog_title"));
-        Page<Blog> blogList = iBlogService.findByTitleOfBlog(title, PageRequest.of(page, 2, sort));
-        model.addAttribute("blog", new Blog());
+        List<Category> categories = iCategoryService.findAll();
+        Page<Blog> blogList = iBlogService.findByTitleOfBlog(title, id, PageRequest.of(page, 2, sort));
+        model.addAttribute("categoryList", categories);
         model.addAttribute("blogList", blogList);
         model.addAttribute("title", title);
+        model.addAttribute("id", id);
         return "listBlog";
     }
 
@@ -119,11 +124,13 @@ public class BlogController {
     @GetMapping("/deleteCategory/{id}")
     public String deleteCategory(@PathVariable int id, Model model) {
         model.addAttribute("category", iCategoryService.findById(id));
+
         return "/deleteCategory";
     }
 
     @PostMapping("/deleteCategory")
     public String delete(Category category, RedirectAttributes redirect) {
+        iBlogService.deleteByCategory(category.getId());
         iCategoryService.delete(category);
         return "redirect:/showListCategory";
     }

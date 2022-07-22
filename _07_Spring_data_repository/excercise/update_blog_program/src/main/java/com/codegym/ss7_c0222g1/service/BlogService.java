@@ -39,7 +39,17 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Page<Blog> findByTitleOfBlog(String title, Pageable pageable) {
-        return iBlogRepository.findByTitleOfBlog(title, pageable);
+    public Page<Blog> findByTitleOfBlog(String title, String id, Pageable pageable) {
+        return iBlogRepository.findByTitleOfBlog(title, id,pageable);
+    }
+
+    @Override
+    public void deleteByCategory(Integer id) {
+        iBlogRepository.deleteByCategory(id);
+    }
+
+    @Override
+    public Page<Blog> findAllByCategoryId(Integer id, Pageable pageable) {
+        return iBlogRepository.findALlByCategoryId(id, pageable);
     }
 }

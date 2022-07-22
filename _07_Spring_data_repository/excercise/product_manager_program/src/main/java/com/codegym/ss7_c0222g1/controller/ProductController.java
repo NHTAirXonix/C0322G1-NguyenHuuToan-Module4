@@ -27,7 +27,9 @@ public class ProductController {
                         Model model) {
         Sort sort = Sort.by("product_id").ascending();
         Page<Product> productList = productService.findAllByName(name, PageRequest.of(page, 2, sort));
-        model.addAttribute("product", new Product());
+        Product product = new Product();
+        product.setName(name);
+        model.addAttribute("product", product);
         model.addAttribute("productList", productList);
         model.addAttribute("name", name);
         return "listProduct";
