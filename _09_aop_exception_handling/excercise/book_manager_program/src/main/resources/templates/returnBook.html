@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/boostrap/bootstrap413/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/boostrap/datatables/css/dataTables.bootstrap4.css}"/>
+    <style>
+        body {
+            background-color: #3b3a3a;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/return}" th:object="${book}" method="POST" novalidate="novalidate" style="width: 90%; margin: auto; margin-top: 100px; background-color: white;padding: 20px;border-radius: 10px">
+    <h3 style="text-align: center;font-family: 'Arial Black',serif;">ADD NEW PRODUCT</h3>
+    <div hidden class="form-group">
+        <label for="productId">Book Id</label>
+        <p style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>
+        <input readonly type="text" class="form-control" id="productId" th:field="*{id}"/>
+    </div>
+    <div class="form-group">
+        <label for="productName">Book Name</label>
+        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        <input readonly type="text" class="form-control" id="productName" th:field="*{name}"/>
+    </div>
+    <div class="form-group">
+        <label for="writerName">Book writer</label>
+        <p style="color: red" th:if="${#fields.hasErrors('writerName')}" th:errors="*{writerName}"></p>
+        <input readonly type="text" class="form-control" id="writerName" th:field="*{writerName}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="amount">Book amount</label>
+        <p style="color: red" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></p>
+        <input readonly type="text" class="form-control" id="amount" th:field="*{amount}"/>
+    </div>
+    <span>
+        <input class="form-control" type="text" th:name="">
+    </span>
+    <span>
+        <input class="btn btn-primary" style="background-color: green" type="submit" value="Borrow"/>
+    </span>
+    <span>`
+        <a class="btn btn-primary"  th:href="@{/list}" role="button">Back to book list</a>
+    </span>
+</form>
+</body>
+<script src="/static/boostrap/jquery/jquery-3.5.1.min.js"></script>
+<script src="/static/boostrap/datatables/js/jquery.dataTables.js"></script>
+<script src="/static/boostrap/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/static/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
+</html>

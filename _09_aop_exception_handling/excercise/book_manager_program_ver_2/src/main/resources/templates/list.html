@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/boostrap/bootstrap413/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/boostrap/datatables/css/dataTables.bootstrap4.css}"/>
+
+</head>
+<body>
+<h1 class="header-panel" style="background-color: black; text-align: center; color: white">BOOK LIST</h1>
+
+<form class="form-inline" action="/give-back" style="margin: 10px">
+    <input class="form-control mr-sm-2" name="code" type="text">
+    <input class="btn btn-outline-success my-2 my-sm-0" style="background-color: dodgerblue; color: white" type="submit"
+           value="give back book">
+</form>
+
+<table class="table text-center table-striped table-hover bg-white w-100 border-0">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Publication date</th>
+        <th>quantity</th>
+        <th>Borrow</th>
+    </tr>
+    <tr th:each="item : ${books}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.author}"></td>
+        <td th:text="${item.publicationDate}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td>
+            <a th:href="@{/borrow/__${item.id}__}">
+                <button class="btn btn-outline-success my-2 my-sm-0" style="background-color: #377d10; color: white">
+                    borrow
+                </button>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+<script src="/static/boostrap/jquery/jquery-3.5.1.min.js"></script>
+<script src="/static/boostrap/datatables/js/jquery.dataTables.js"></script>
+<script src="/static/boostrap/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/static/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
+</html>

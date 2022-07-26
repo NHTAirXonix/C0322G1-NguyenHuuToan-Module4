@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/boostrap/bootstrap413/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/boostrap/datatables/css/dataTables.bootstrap4.css}"/>
+    <style>
+        .title1 {
+            text-align: center;
+            background-color: #3b3a3a;
+            color: white;
+            font-family: 'Arial Black', serif;
+            margin: 0px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        body {
+            background-color: #3b3a3a;
+        }
+    </style>
+</head>
+<body>
+<h2 class="title1">BOOK LIST</h2>
+<table class="table text-center table-striped table-hover bg-white w-100 border-0">
+    <thead>
+    <tr>
+        <th>Book Id</th>
+        <th>Book Name</th>
+        <th>Book Writer</th>
+        <th>Book Amount</th>
+        <th>Borrow</th>
+        <th>Return</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${bookList}">
+        <td th:text="${row.getId()}"></td>
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getWriterName()}"></td>
+        <td th:text="${row.getAmount()}"></td>
+        <td><a class="btn btn-primary" style="background-color: green" th:href="@{/borrow/{id}(id=${row.getId()})}"
+               role="button">Borrow</a></td>
+        <td><a class="btn btn-primary" style="background-color: #007bff;" th:href="@{/return/{id}(id=${row.getId()})}"
+               role="button">Return</a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+<div style="text-align: center">
+    <span>
+            <a th:if="${bookList.hasPrevious()}" class="btn btn-primary"
+               style="background-color: white; color: black"
+               th:href="@{/list(page = ${bookList.number - 1})}"
+               role="button">Previous
+            </a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,bookList.totalPages - 1)}">
+        <a class="btn btn-primary" th:href="@{/list(page = ${pageNo})}" th:text="${pageNo}"
+           style="background-color: white; color: black">
+        </a>
+    </span>
+    <span>
+        <a th:if="${bookList.hasNext()}" class="btn btn-primary"
+           style="background-color: white; color: black"
+           th:href="@{/list(page = ${bookList.number +1})}"
+           role="button">Next
+            </a>
+    </span>
+</div>
+
+</body>
+<script src="/static/boostrap/jquery/jquery-3.5.1.min.js"></script>
+<script src="/static/boostrap/datatables/js/jquery.dataTables.js"></script>
+<script src="/static/boostrap/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/static/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
+</html>
