@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/boostrap/bootstrap413/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/boostrap/datatables/css/dataTables.bootstrap4.css}"/>
+
+    <style>
+        .header-panel {
+            background-color: #046056;
+            height: 80px;
+            width: 100%;
+        }
+
+        .greenButton {
+            background-color: #046056;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .redButton {
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .greyButton {
+            background-color: #555555;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .titles {
+            background-color: #046056;
+            height: 60px;
+            line-height: 60px;
+            color: white;
+            font-family: 'Arial Black', serif;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .bodyAll {
+            width: 90%;
+            border-radius: 10px;
+            background-color: white;
+            margin: 90px auto;
+            padding: 10px;
+        }
+
+        .tableTitle {
+            background-color: #046056;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;background-image: radial-gradient(#0c5460,#e0e0e0)">
+
+<!--HEADER-->
+
+<div class="header-panel">
+    <div class="row" style="height: 80px;margin: 0;padding: 0;">
+        <div class="col-3" style="height: 80px;margin: 0;padding: 0;">
+            <img src="/image/logo_web6.jpg" alt=""
+                 style="height: 60px; width: 60px; margin: 10px;display: inline;border-radius: 5px;border: black solid 1px;padding: 0;">
+            <p style="line-height: 80px;text-align: left;width: 70%;display: inline;font-size: 20px;color: white"><b>FURAMA
+                CONTROLLER</b></p>
+        </div>
+        <div class="col-7"></div>
+        <div class="col-2">
+            <a href=""><p
+                    style="line-height: 80px;text-align: left;width: 70%;display: inline;font-size: 20px;color: white">
+                Đăng nhập/Đăng xuất</p></a>
+        </div>
+    </div>
+</div>
+
+<!--MENU-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" ; style="background-color: #046056">
+    <a class="navbar-brand" th:href="@{/}">Home</a>
+
+    <a class="navbar-brand" th:href="@{/customer/list}">Customer</a>
+
+    <a class="navbar-brand" th:href="@{/employee/list}">Employee</a>
+
+    <a class="navbar-brand" th:href="@{/service/list}">Service</a>
+
+    <a class="navbar-brand" th:href="@{/contract/list}">Contract</a>
+</nav>
+
+<!--START BODY WEB-->
+
+<div class="bodyAll">
+    <table id="customerService" class="tableTitle">
+
+        <tr>
+            <th style="width: 70%"><h1 class="titles">SERVICE LIST</h1></th>
+            <th>
+                <a th:href="@{/service/create}">
+                    <button style="background-color: white;color: black; border-radius: 5px; height: 40px"> &#10010;
+                        New Service
+                    </button>
+                </a>
+            </th>
+            <th>
+                <form th:action="@{/service/list}" th:object="${service}" method="get">
+                    <input style="height:40px;border-radius:5px;" placeholder="Enter the blog's name" type="text"
+                           th:field="*{name}">
+                    <button style="background-color: white;color: black; border-radius: 5px; height: 40px"
+                            type="submit">&#9906; Search
+                    </button>
+                </form>
+            </th>
+        </tr>
+    </table>
+
+    <table id="tableCustomer" class="table table-striped table-bordered" style="width: 100%">
+        <thead class="thead-dark">
+        <tr>
+            <th class="header"><p style="text-align: center">ID</p></th>
+            <th class="header"><p style="text-align: center">AMOUNT</p></th>
+            <th class="header"><p style="text-align: center">AREA</p></th>
+            <th class="header"><p style="text-align: center">COST</p></th>
+            <th class="header"><p style="text-align: center">DECRIPTION</p></th>
+            <th class="header"><p style="text-align: center">FLOOR</p></th>
+            <th class="header"><p style="text-align: center">NAME</p></th>
+            <th class="header"><p style="text-align: center">POOL AREA</p></th>
+            <th class="header"><p style="text-align: center">ROOM STANDARD</p></th>
+            <th class="header"><p style="text-align: center">RENT TYPE</p></th>
+            <th class="header"><p style="text-align: center">SERVICE TYPE</p></th>
+            <th class="header"><p style="text-align: center">FREE SERVICE</p></th>
+            <th class="header"><p style="text-align: center">EDIT</p></th>
+            <th class="header"><p style="text-align: center">DELETE</p></th>
+        </tr>
+        </thead>
+        <tbody id="tableService">
+        <tr th:each="service,rowStat : ${serviceList}">
+            <td th:text="${service.id}"></td>
+            <td th:text="${service.amountCustomer}"></td>
+            <td th:text="${service.area}"></td>
+            <td th:text="${service.cost}"></td>
+            <td th:text="${service.description}"></td>
+            <td th:text="${service.floor}"></td>
+            <td th:text="${service.name}"></td>
+            <td th:text="${service.poolArea}"></td>
+            <td th:text="${service.standardRoom}"></td>
+            <td th:text="${service.rentType.rentType}"></td>
+            <td th:text="${service.facilityType.name}"></td>
+            <td th:text="${service.freeService}"></td>
+            <td>
+                <center>
+                    <button th:href="${service.id}" type="button" class="greenButton editService">
+                        <a style="color: white;text-decoration: none">Edit</a>
+                    </button>
+                </center>
+            </td>
+            <td>
+                <center>
+                    <button th:href="${service.id}" type="button"
+                            class="redButton deleteEmployee" data-toggle="modal" data-target="#delete">
+                        <a style="color: white;text-decoration: none">Delete</a>
+                    </button>
+                </center>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<!--MODAL DELETE-->
+
+<div class="modal" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete employee</h5>
+                <button type="button" class="redButton" style="height: 30px;width: 30px" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="removeEmployee">
+                <div class="modal-body">
+                    Are you sure you want to delete a service: <br>
+                    ID: <input style="border: none; outline: none; color: #ff0000" id="idD" readonly> <br>
+                    Name is: <input style="border: none; outline: none; color: #ff0000" id="nameD" readonly> <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  onclick="deleteEmp()"  class="redButton" data-dismiss="modal">Delete</button>
+                    <button type="button" class="greyButton" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--END BODY WEB-->
+
+</body>
+
+<!--WEB RESOURCES-->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/boostrap/datatables/js/jquery.dataTables.js"></script>
+<script src="/boostrap/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
+
+<script>
+
+    // DELETE MODAL
+
+    var a;
+    var nameGet;
+    // DELETE SERVICE
+
+    $("#tableService").on("click", ".deleteEmployee", function (event,name) {
+        debugger
+        a = $(this);
+        nameGet = $(this);
+        let facilityId = a.attr("href");
+        $.ajax({
+            type: "GET",
+            url: `/serviceAjax/delete/${facilityId}`,
+            success: function (data) {
+                document.getElementById("idD").value = data.id;
+                document.getElementById("nameD").value = data.name;
+                a = data.employeeId;
+                console.log(a + "OK")
+                console.log(data)
+            }
+        })
+        event.preventDefault();
+    });
+
+    function deleteEmp() {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            url: `/serviceAjax/remove/${a}`,
+            success: function (data) {
+                let content = '';
+                for (let i = 0; i < data.length; i++) {
+                    content += getService(data[i]);
+                }
+                document.getElementById('tableService').innerHTML = content;
+            }
+        });
+        event.preventDefault();
+    }
+
+    // EDIT ON LIST
+
+    let getIndex;
+
+    $("#tableService").on("click", ".editService", function (event) {
+        debugger
+        getIndex = $(this);
+        let serviceId = getIndex.attr("href")
+        $.ajax({
+            type: "GET",
+            url: `/serviceAjax/edit/${serviceId}`,
+            success: function (data) {
+                console.log(data);
+                let serviceList = data[0];
+                let rentTypeList = data[1];
+                console.log(serviceList);
+                console.log(rentTypeList);
+                let content = '';
+                for (let i = 0; i < serviceList.length; i++) {
+                    if ((i + 1) == serviceId && serviceList[i].facilityType.id == 1) {
+                        content += getFormEditVilla(serviceList[i],rentTypeList);
+                    } else if ((i + 1) == serviceId && serviceList[i].facilityType.id == 2) {
+                        content += getFormEditHouse(serviceList[i],rentTypeList);
+                    } else if ((i + 1) == serviceId && serviceList[i].facilityType.id == 3) {
+                        content += getFormEditRoom(serviceList[i],rentTypeList);
+                    } else {
+                        content += getService(serviceList[i]);
+                    }
+                }
+                document.getElementById('tableService').innerHTML = content;
+            }
+        })
+        event.preventDefault();
+    });
+
+    //  FUNCTION GET EMPLOYEE ROW
+
+    function getService(service) {
+        return `<tr>
+                <td>${service.id}</td>
+                <td>${service.amountCustomer}</td>
+                <td>${service.area}</td>
+                <td>${service.cost}</td>
+                <td>${service.description}</td>
+                <td>${service.floor}</td>
+                <td>${service.name}</td>
+                <td>${service.poolArea}</td>
+                <td>${service.standardRoom}</td>
+                <td>${service.rentType.rentType}</td>
+                <td>${service.facilityType.name}</td>
+                <td>${service.freeService}</td>
+                <td>
+                    <center>
+                    <button href="${service.id}" type="button"
+                            class="greenButton editService">
+                        <a style="color: white;text-decoration: none">Edit</a>
+                    </button>
+                </center>
+                 </td>
+                 <td>
+                    <center>
+                        <button data-target="#delete" class="redButton deleteEmployee" type="button" data-toggle="modal" href="${service.id}">Delete</button>
+                    </center>
+                </tr>`
+    }
+
+    function getFormEditVilla(service,rentTypeList) {
+        let result = ``;
+            result += `<tr>
+                       <td><input readonly id="id" type="text" style="width: 100%; color: red" value="${service.id}"></td>
+                       <td><input id="amountCustomer" type="text" style="width: 100%" value="${service.amountCustomer}"></td>
+                       <td><input id="area" type="text" style="width: 100%" value="${service.area}"></td>
+                       <td><input id="cost" type="text" style="width: 100%" value="${service.cost}"></td>
+                       <td><input id="description" type="text" style="width: 100%" value="${service.description}"></td>
+                       <td><input id="floor" type="text" style="width: 100%" value="${service.floor}"></td>
+                       <td><input id="nameF" type="text" style="width: 100%" value="${service.name}"></td>
+                       <td><input id="poolArea" type="text" style="width: 100%" value="${service.poolArea}"></td>
+                       <td><input id="standardRoom" type="text" style="width: 100%" value="${service.standardRoom}"></td>
+                       <td>
+                       <select  id="rentType">`;
+
+                       for (let i =0; i < rentTypeList.length;i++) {
+                           result += `<option value="${rentTypeList[i].id}" >${rentTypeList[i].rentType}</option>`
+                       }
+
+            result += `<select  id="rentType">
+
+                       </select>
+                       </td>
+                       <td>
+                        <select  id="facilityType">
+                            <option value="${service.facilityType.id}" >${service.facilityType.name}</option>
+                        </select>
+                       </td>
+                       <td><input readonly placeholder="Don't have this option" id="freeService" type="text" style="width: 100%; color: red" value="${service.freeService}"></td>
+                       <td><center><button class="greenButton edit" id="edit" type="button">Save</button></center></td>
+                       <td><center><button class="greyButton reload" id="reload" type="button" >Cancel</button></center>
+                       </tr>`;
+
+        return result;
+    }
+
+    function getFormEditHouse(service,rentTypeList) {
+        let result = ``;
+        result +=  `<tr>
+                    <td><input readonly id="id" type="text" style="width: 100%; color: red" value="${service.id}"></td>
+                    <td><input id="amountCustomer" type="text" style="width: 100%" value="${service.amountCustomer}"></td>
+                    <td><input id="area" type="text" style="width: 100%" value="${service.area}"></td>
+                    <td><input id="cost" type="text" style="width: 100%" value="${service.cost}"></td>
+                    <td><input id="description" type="text" style="width: 100%" value="${service.description}"></td>
+                    <td><input id="floor" type="text" style="width: 100%" value="${service.floor}"></td>
+                    <td><input id="nameF" type="text" style="width: 100%" value="${service.name}"></td>
+                    <td><input readonly id="poolArea" type="text" style="width: 100%; color: red" value="${service.poolArea}"></td>
+                    <td><input id="standardRoom" type="text" style="width: 100%" value="${service.standardRoom}"></td>
+                    <td>
+                    <select  id="rentType">`;
+
+                    for (let i =0; i < rentTypeList.length;i++) {
+                        result += `<option value="${rentTypeList[i].id}" >${rentTypeList[i].rentType}</option>`
+                    }
+
+        result +=  `<select  id="rentType">
+                    </select>
+                    </td>
+                    <td>
+                        <select  id="facilityType">
+                            <option value="${service.facilityType.id}" >${service.facilityType.name}</option>
+                        </select>
+                    </td>
+                    <td><input readonly placeholder="Don't have this option" id="freeService" type="text" style="width: 100%; color: red" value="${service.freeService}"></td>
+                    <td><center><button class="greenButton edit" id="edit">Save</button></center></td>
+                    <td><center><button class="greyButton reload" id="reload" type="button" >Cancel</button></center>
+                    </tr>`;
+
+        return result;
+    }
+
+    function getFormEditRoom(service,rentTypeList) {
+        let result = ``;
+        result +=  `<tr>
+                    <td><input readonly id="id" type="text" style="width: 100%; color: red" value="${service.id}"></td>
+                    <td><input id="amountCustomer" type="text" style="width: 100%" value="${service.amountCustomer}"></td>
+                    <td><input id="area" type="text" style="width: 100%" value="${service.area}"></td>
+                    <td><input id="cost" type="text" style="width: 100%" value="${service.cost}"></td>
+                    <td><input readonly id="description" type="text" style="width: 100%; color: red" value="${service.description}"></td>
+                    <td><input readonly id="floor" type="text" style="width: 100%; color: red" value="${service.floor}"></td>
+                    <td><input id="nameF" type="text" style="width: 100%" value="${service.name}"></td>
+                    <td><input readonly id="poolArea" type="text" style="width: 100%; color: red" value="${service.poolArea}"></td>
+                    <td><input readonly id="standardRoom" type="text" style="width: 100%; color: red" value="${service.standardRoom}"></td>
+                    <td>
+                    <select  id="rentType">`;
+
+                    for (let i =0; i < rentTypeList.length;i++) {
+                        result += `<option value="${rentTypeList[i].id}" >${rentTypeList[i].rentType}</option>`
+                    }
+
+        result +=  `<select  id="rentType">
+                    </select>
+                    </td>
+                    <td>
+                    <select  id="facilityType">
+                        <option value="${service.facilityType.id}" >${service.facilityType.name}</option>
+                    </select>
+                    </td>
+                    <td><input id="freeService" type="text" style="width: 100%" value="${service.freeService}"></td>
+                    <td><center><button class="greenButton edit" id="edit">Save</button></center></td>
+                    <td><center><button class="greyButton reload" id="reload" type="button" >Cancel</button></center>
+                    </tr>`;
+        return result;
+    }
+
+    // EDIT SERVICE IN DATABASE
+
+    $("#tableService").on("click", ".edit", function (event) {
+        let id = $('#id').val();
+        let name = $('#nameF').val();
+        let cost = $('#cost').val();
+        let area = $('#area').val();
+        let standardRoom = $('#standardRoom').val();
+        let amountCustomer = $('#amountCustomer').val();
+        let description = $('#description').val();
+        let poolArea = $('#poolArea').val();
+        let floor = $('#floor').val();
+        let rentType = $('#rentType').val();
+        let facilityType = $('#facilityType').val();
+        let freeService = $('#freeService').val();
+        let status = 0;
+
+        let service = {
+            id: id,
+            name: name,
+            area: area,
+            cost: cost,
+            amountCustomer: amountCustomer,
+            standardRoom: standardRoom,
+            description: description,
+            poolArea: poolArea,
+            freeService: freeService,
+            floor: floor,
+            status: status,
+            rentType: {
+                id: rentType
+            },
+            facilityType: {
+                id: facilityType
+            }
+        };
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(service),
+            url: "/serviceAjax/updateService",
+            success: function (data) {
+                let content = '';
+                for (let i = 0; i < data.length; i++) {
+                    content += getService(data[i]);
+                }
+                document.getElementById('tableService').innerHTML = content;
+            }
+        });
+        event.preventDefault();
+    });
+
+    $("#tableService").on("click", ".reload", function (event) {
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(),
+            url: "/serviceAjax/reload",
+            success: function (data) {
+                let content = '';
+                for (let i = 0; i < data.length; i++) {
+                    content += getService(data[i]);
+                }
+                document.getElementById('tableService').innerHTML = content;
+            }
+        });
+        event.preventDefault();
+    });
+</script>
+
+</html>

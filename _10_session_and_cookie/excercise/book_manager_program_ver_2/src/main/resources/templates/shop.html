@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" th:href="@{/boostrap/bootstrap413/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/boostrap/datatables/css/dataTables.bootstrap4.css}"/>
+
+</head>
+<body>
+<h1 style="text-align: center;background-color: black;color: white">LIST PRODUCT</h1>
+<a style="margin: 10px;" th:href="@{/shopping-cart}" class="btn btn-primary">YOUR CARD</a>
+<div class="row">
+    <th:block th:each="product:${products}">
+        <div class="card" style="width: 15rem; margin: 50px">
+            <img class="card-img-top" th:src="@{${product.description}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 th:text="${product.name}" class="card-title">Card title</h5>
+                <div class="form-inline">Price:<p th:text="${product.price}" class="card-text"></p></div>
+                <br>
+                <th><a th:href="@{/view/__${product.id}__(action='list')}" class="btn btn-primary">Add To Cart</a></th>
+            </div>
+        </div>
+    </th:block>
+</div>
+
+
+</body>
+<script src="/static/boostrap/jquery/jquery-3.5.1.min.js"></script>
+<script src="/static/boostrap/datatables/js/jquery.dataTables.js"></script>
+<script src="/static/boostrap/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/static/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
+</html>
