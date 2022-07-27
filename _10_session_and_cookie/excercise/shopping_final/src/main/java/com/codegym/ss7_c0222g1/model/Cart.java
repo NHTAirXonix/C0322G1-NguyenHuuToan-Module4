@@ -1,6 +1,12 @@
 package com.codegym.ss7_c0222g1.model;
 
+import org.omg.CORBA.ORB;
+
+import javax.rmi.CORBA.Util;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Cart {
@@ -26,7 +32,6 @@ public class Cart {
         return false;
     }
 
-
     private Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> selectItemInCart(com.codegym.ss7_c0222g1.model.Product product) {
         for (Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> entry : products.entrySet()) {
             if (entry.getKey().getId().equals(product.getId())) {
@@ -47,6 +52,7 @@ public class Cart {
         }
     }
 
+    //giam san pham
     public void removeProduct(com.codegym.ss7_c0222g1.model.Product product) {
         Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
         if (itemEntry.getValue() == 1) {
@@ -57,11 +63,14 @@ public class Cart {
         }
     }
 
+    //xoa san pham
     public void deleteNowProduct(Product product) {
         Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
         products.remove(itemEntry.getKey());
     }
 
+
+    //dem so san pham
     public Integer countProductQuantity() {
         Integer productQuantity = 0;
         for (Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> entry : products.entrySet()) {
@@ -74,10 +83,16 @@ public class Cart {
         return products.size();
     }
 
+    //thanh toan
+    public void pay(){
+        products.clear();
+    }
+
     public void clearCart() {
         products.clear();
     }
 
+    //tinh tong tien
     public Float countTotalPayment() {
         float payment = 0;
         for (Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> entry : products.entrySet()) {

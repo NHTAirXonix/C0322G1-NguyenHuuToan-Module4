@@ -44,6 +44,13 @@
             <td></td>
             <td th:text="${cart.countTotalPayment()}"></td>
         </tr>
+        <tr>
+            <th colspan="7">
+                <center>
+                    <a class="btn btn-primary" th:href="@{/remove/(action='pay')}">PAY</a>
+                </center>
+            </th>
+        </tr>
     </table>
 </form>
 </body>

@@ -57,7 +57,21 @@ public class ProductController {
             cart.countItemQuantity();
             return "redirect:/shopping-cart";
         }
+        if (action.equals("pay")) {
+            cart.pay();
+            cart.countItemQuantity();
+            return "redirect:/shopping-cart";
+        }
         cart.addProduct(productOptional.get());
+        return "redirect:/shop";
+    }
+
+    @GetMapping("/remove")
+    public String addToCart(@ModelAttribute Cart cart, @RequestParam("action") String action) {
+        if (action.equals("pay")) {
+            cart.pay();
+            cart.countItemQuantity();
+        }
         return "redirect:/shop";
     }
 }
