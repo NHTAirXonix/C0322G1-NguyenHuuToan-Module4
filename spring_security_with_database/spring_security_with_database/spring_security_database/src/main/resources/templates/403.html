@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <h3>Bạn không có quyền truy cập vào trang này, vui lòng liên hệ ban quản trị!</h3>
+    <p><a th:href="@{/home}">Back</a> | <a th:href="@{/logout}">Logout</a></p>
+</div>
+
+</body>
+</html>

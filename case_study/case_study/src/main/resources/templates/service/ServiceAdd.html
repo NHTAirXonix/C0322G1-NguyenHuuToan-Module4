@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/bootstrap413/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/datatables/css/dataTables.bootstrap4.css}"/>
+    <style>
+        .header-panel {
+            background-color: #046056;
+            height: 80px;
+            width: 100%;
+        }
+
+        .greenButton {
+            background-color: #046056;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .redButton {
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .greyButton {
+            background-color: #555555;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .blueButton {
+            background-color: #1794cd;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;background-image: radial-gradient(#0c5460,#e0e0e0)">
+
+<!--HEADER-->
+
+<div class="header-panel">
+    <div class="row" style="height: 80px;margin: 0;padding: 0;">
+        <div class="col-2" style="height: 80px;margin: 0;padding: 0;">
+            <img src="/image/logo_web6.jpg" alt=""
+                 style="height: 60px; width: 60px; margin: 10px;display: inline;border-radius: 5px;border: black solid 1px;padding: 0;">
+            <p style="line-height: 80px;text-align: left;width: 70%;display: inline;font-size: 20px;color: white">
+                <b>FURAMA CONTROLLER</b>
+            </p>
+        </div>
+        <div class="col-6"></div>
+        <div class="col-2">
+            <center>
+                <a sec:authorize="isAuthenticated()"  href="" style="color: white; text-decoration: none">
+                    <p style="line-height: 80px;text-align: left;width: 70%;display: inline;font-size: 20px;color: white">
+                        Account: <span sec:authentication="principal.username"></span>
+                </a>
+            </center>
+        </div>
+        <div  class="col-1" style="">
+            <center>
+                <button sec:authorize="isAuthenticated()" style="margin-top: 20px" class="redButton"><a style="color: white;text-decoration: none" th:href="@{/logout}">Logout</a></button>
+            </center>
+        </div>
+        <div class="col-1">
+            <center>
+                <button sec:authorize="!isAuthenticated()" style="margin-top: 20px" class="redButton"><a style="color: white;text-decoration: none" th:href="@{/myLogin}">Login</a></button>
+            </center>
+        </div>
+    </div>
+</div>
+
+<!--MENU-->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" ; style="background-color: #046056">
+    <a class="navbar-brand" th:href="@{/}">Home</a>
+
+    <a class="navbar-brand" th:href="@{/customer/list}">Customer</a>
+
+    <a class="navbar-brand" th:href="@{/employee/list}">Employee</a>
+
+    <a class="navbar-brand" th:href="@{/service/list}">Service</a>
+
+    <a class="navbar-brand" th:href="@{/contract/list}">Contract</a>
+</nav>
+
+<!--START BODY WEB-->
+<center>
+    <div style="width: 800px; background-color: white; padding: 10px; margin-top: 100px;border-radius: 10px">
+        <h1 style="border-radius: 5px; background-color: #046056;color: white;font-family: 'Arial Black',serif;">CREATE SERVICE</h1>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <button data-target="#addVilla"
+                        style="background-color: white;color: black; border-radius: 5px; height: 40px"
+                        type="button" data-toggle="modal">
+                    &#10010;ADD New Villa
+                </button>
+            </div>
+            <div class="col-4">
+                <button data-target="#addHouse"
+                        style="background-color: white;color: black; border-radius: 5px; height: 40px"
+                        type="button" data-toggle="modal">
+                    &#10010;ADD New House
+                </button>
+            </div>
+            <div class="col-4">
+                <button data-target="#addRoom"
+                        style="background-color: white;color: black; border-radius: 5px; height: 40px"
+                        type="button" data-toggle="modal">
+                    &#10010;ADD New Room
+                </button>
+            </div>
+        </div>
+        <br>
+    </div>
+</center>
+
+<!--ADD VILLA-->
+
+<div class="modal" id="addVilla">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 800px; position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, 25%);padding: 10px;border-radius: 10px">
+            <h1 style="border-radius: 5px; background-color: #046056;color: white;font-family: 'Arial Black',serif;text-align: center">CREATE VILLA</h1>
+            <form id="createVilla" novalidate="novalidate" class="p-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="idV">Service ID</label>
+                            <input readonly placeholder="Auto Increase" type="text" class="form-control" id="idV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="nameV">Service Name</label>
+                            <input type="text" class="form-control" id="nameV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="areaV">Service Area</label>
+                            <input type="text" class="form-control" id="areaV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="costV">Service Cost</label>
+                            <input type="text" class="form-control" id="costV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="standardRoomV">Service Standar Room</label>
+                            <select class="custom-select" id="standardRoomV">
+                                <option value="Vip">Vip</option>
+                                <option value="Luxury">Luxury</option>
+                                <option value="Normal">Normal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="amountCustomerV">Service Amount Customer</label><br>
+                            <input type="text" class="form-control" id="amountCustomerV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="descriptionV">Service Description</label><br>
+                            <input type="text" class="form-control" id="descriptionV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="poolAreaV">Service Pool Area</label><br>
+                            <input type="text" class="form-control" id="poolAreaV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="floorV">Service Floor</label><br>
+                            <input type="text" class="form-control" id="floorV">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="rentTypeV">Service Rent Type</label><br>
+                            <select class="custom-select" id="rentTypeV">
+                                <option th:each="row,rowStat : ${rentTypeList}"
+                                        th:value="${row.id}"
+                                        th:text="${row.rentType}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="facilityTypeV">Service Type</label><br>
+                            <select class="custom-select" id="facilityTypeV">
+                                <option th:value="1" th:text="Villa"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="freeServiceV">Free Service</label><br>
+                            <input readonly placeholder="Don't have this option" type="text" class="form-control" id="freeServiceV">
+                        </div>
+                    </div>
+                </div>
+
+<!--                BUTTON IN VILLA-->
+
+                <span>
+                    <button class="greenButton save1" data-dismiss="modal" id="save1" >Save</button>
+                </span>
+                <span>
+                    <button type="button" class="greyButton" data-dismiss="modal">Cancel</button>
+                </span>
+                <span>
+                    <button class="blueButton">
+                        <a style="color: white;text-decoration: none;" th:href="@{/service/list(page = 0,name = '')}" role="button">Back to service list</a>
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--ADD HOUSE-->
+
+<div class="modal" id="addHouse">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 800px; position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, 25%);padding: 10px;border-radius: 10px">
+            <h1 style="border-radius: 5px; background-color: #046056;color: white;font-family: 'Arial Black',serif;text-align: center">CREATE HOUSE</h1>
+            <form id="createHouse" novalidate="novalidate" class="p-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="idH">Service ID</label>
+                            <input readonly placeholder="Auto Increase" type="text" class="form-control" id="idH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="nameH">Service Name</label>
+                            <input type="text" class="form-control" id="nameH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="areaH">Service Area</label>
+                            <input type="text" class="form-control" id="areaH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="costH">Service Cost</label>
+                            <input type="text" class="form-control" id="costH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="standardRoomH">Service Standar Room</label>
+                            <select class="custom-select" id="standardRoomH">
+                                <option value="Vip">Vip</option>
+                                <option value="Luxury">Luxury</option>
+                                <option value="Normal">Normal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="amountCustomerH">Service Amount Customer</label><br>
+                            <input type="text" class="form-control" id="amountCustomerH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="descriptionH">Service Description</label><br>
+                            <input type="text" class="form-control" id="descriptionH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="poolAreaH">Service Pool Area</label><br>
+                            <input readonly placeholder="Don't have this option" type="text" class="form-control" id="poolAreaH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="floorH">Service Floor</label><br>
+                            <input type="text" class="form-control" id="floorH">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="rentTypeV">Service Rent Type</label><br>
+                            <select class="custom-select" id="rentTypeH">
+                                <option th:each="row,rowStat : ${rentTypeList}"
+                                        th:value="${row.id}"
+                                        th:text="${row.rentType}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="facilityTypeV">Service Type</label><br>
+                            <select class="custom-select" id="facilityTypeH">
+                                <option th:value="2" th:text="House"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="freeServiceH">Free Service</label><br>
+                            <input type="text" readonly placeholder="Don't have this option" class="form-control" id="freeServiceH">
+                        </div>
+                    </div>
+                </div>
+
+<!--                BUTTON IN HOUSE-->
+
+                <span>
+                    <button class="greenButton save2" data-dismiss="modal" id="save2" >Save</button>
+                </span>
+                <span>
+                    <button type="button" class="greyButton" data-dismiss="modal">Cancel</button>
+                </span>
+                <span>
+                    <button class="blueButton">
+                        <a style="color: white;text-decoration: none;" th:href="@{/service/list(page = 0,name = '')}" role="button">Back to service list</a>
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--ADD ROOM-->
+
+<div class="modal" id="addRoom">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 800px; position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, 25%);padding: 10px;border-radius: 10px">
+            <h1 style="border-radius: 5px; background-color: #046056;color: white;font-family: 'Arial Black',serif;text-align: center">CREATE ROOM</h1>
+            <form id="createRoom" novalidate="novalidate" class="p-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="idR">Service ID</label>
+                            <input readonly placeholder="Auto Increase" type="text" class="form-control" id="idR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="nameR">Service Name</label>
+                            <input type="text" class="form-control" id="nameR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="areaR">Service Area</label>
+                            <input type="text" class="form-control" id="areaR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="costR">Service Cost</label>
+                            <input type="text" class="form-control" id="costR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="standardRoomR">Service Standar Room</label>
+                            <input readonly placeholder="Don't have this option" type="text" class="form-control" id="standardRoomR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="amountCustomerR">Service Amount Customer</label><br>
+                            <input type="text" class="form-control" id="amountCustomerR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="descriptionR">Service Description</label><br>
+                            <input readonly placeholder="Don't have this option" type="text" class="form-control" id="descriptionR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="poolAreaR">Service Pool Area</label><br>
+                            <input readonly placeholder="Don't have this option" type="text" class="form-control" id="poolAreaR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="floorR">Service Floor</label><br>
+                            <input readonly placeholder="Don't have this option" type="text" class="form-control" id="floorR">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="rentTypeR">Service Rent Type</label><br>
+                            <select class="custom-select" id="rentTypeR">
+                                <option th:each="row,rowStat : ${rentTypeList}"
+                                        th:value="${row.id}"
+                                        th:text="${row.rentType}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="facilityTypeR">Service Type</label><br>
+                            <select class="custom-select" id="facilityTypeR">
+                                <option th:value="3" th:text="Room"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="freeServiceR">Free Service</label><br>
+                            <input type="text" class="form-control" id="freeServiceR">
+                        </div>
+                    </div>
+                </div>
+
+                <!--                BUTTON IN ROOM-->
+
+                <span>
+                    <button class="greenButton save3" data-dismiss="modal" id="save3" >Save</button>
+                </span>
+                <span>
+                    <button type="button" class="greyButton" data-dismiss="modal">Cancel</button>
+                </span>
+                <span>
+                    <button class="blueButton">
+                        <a style="color: white;text-decoration: none;" th:href="@{/service/list(page = 0,name = '')}" role="button">Back to service list</a>
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="/jquery/jquery-3.5.1.min.js"></script>
+<script src="/datatables/js/jquery.dataTables.js"></script>
+<script src="/datatables/js/dataTables.bootstrap4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="/bootstrap413/js/bootstrap.bundle.js"></script>
+
+<script>
+    // FUNCTION ADD NEW EMPLOYEE
+
+    $("#save1").on("click", function (event) {
+        debugger
+        let idV = $('#idV').val();
+        let nameV = $('#nameV').val();
+        let costV = $('#costV').val();
+        let areaV = $('#areaV').val();
+        let standardRoomV = $('#standardRoomV').val();
+        let amountCustomerV = $('#amountCustomerV').val();
+        let descriptionV = $('#descriptionV').val();
+        let poolAreaV = $('#poolAreaV').val();
+        let floorV = $('#floorV').val();
+        let rentTypeV = $('#rentTypeV').val();
+        let facilityTypeV = $('#facilityTypeV').val();
+        let freeServiceV = $('#freeServiceV').val();
+        let status = 0;
+
+        let newVilla = {
+            id: idV,
+            name: nameV,
+            area: areaV,
+            cost: costV,
+            amountCustomer: amountCustomerV,
+            standardRoom: standardRoomV,
+            description: descriptionV,
+            poolArea: poolAreaV,
+            floor: floorV,
+            status: status,
+            freeService: freeServiceV,
+            rentType: {
+                id: rentTypeV
+            },
+            facilityType: {
+                id: facilityTypeV
+            }
+        };
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newVilla),
+            //tên API
+            url: "/serviceAjax/createVilla",
+            //xử lý khi thành công
+            success: alert("Create Villa success"),
+        });
+        event.preventDefault();
+    });
+
+    $("#save2").on("click", function (event) {
+        debugger
+        let idV = $('#idH').val();
+        let nameV = $('#nameH').val();
+        let costV = $('#costH').val();
+        let areaV = $('#areaH').val();
+        let standardRoomV = $('#standardRoomH').val();
+        let amountCustomerV = $('#amountCustomerH').val();
+        let descriptionV = $('#descriptionH').val();
+        let poolAreaV = $('#poolAreaH').val();
+        let floorV = $('#floorH').val();
+        let rentTypeV = $('#rentTypeH').val();
+        let facilityTypeV = $('#facilityTypeH').val();
+        let freeServiceV = $('#freeServiceH').val();
+        let status = 0;
+
+        let newHouse = {
+            id: idV,
+            name: nameV,
+            area: areaV,
+            cost: costV,
+            amountCustomer: amountCustomerV,
+            standardRoom: standardRoomV,
+            description: descriptionV,
+            poolArea: poolAreaV,
+            freeService: freeServiceV,
+            floor: floorV,
+            status: status,
+            rentType: {
+                id: rentTypeV
+            },
+            facilityType: {
+                id: facilityTypeV
+            }
+        };
+        console.log(newHouse)
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newHouse),
+            url: "/serviceAjax/createHouse",
+            success: alert("Create House success"),
+        });
+        event.preventDefault();
+    });
+
+    $("#save3").on("click", function (event) {
+        debugger
+        let idV = $('#idR').val();
+        let nameV = $('#nameR').val();
+        let costV = $('#costR').val();
+        let areaV = $('#areaR').val();
+        let standardRoomV = $('#standardRoomR').val();
+        let amountCustomerV = $('#amountCustomerR').val();
+        let descriptionV = $('#descriptionR').val();
+        let poolAreaV = $('#poolAreaR').val();
+        let floorV = $('#floorR').val();
+        let rentTypeV = $('#rentTypeR').val();
+        let facilityTypeV = $('#facilityTypeR').val();
+        let freeServiceV = $('#freeServiceR').val();
+        let status = 0;
+
+        let newRoom = {
+            id: idV,
+            name: nameV,
+            area: areaV,
+            cost: costV,
+            amountCustomer: amountCustomerV,
+            standardRoom: standardRoomV,
+            description: descriptionV,
+            poolArea: poolAreaV,
+            freeService: freeServiceV,
+            floor: floorV,
+            status: status,
+            rentType: {
+                id: rentTypeV
+            },
+            facilityType: {
+                id: facilityTypeV
+            }
+        };
+        console.log(newRoom)
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newRoom),
+            url: "/serviceAjax/createRoom",
+            success: alert("Create Room success"),
+        });
+        event.preventDefault();
+    });
+</script>
+
+</html>
